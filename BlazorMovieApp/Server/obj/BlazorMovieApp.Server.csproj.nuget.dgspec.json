@@ -1,0 +1,224 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Server\\BlazorMovieApp.Server.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Client\\BlazorMovieApp.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Client\\BlazorMovieApp.Client.csproj",
+        "projectName": "BlazorMovieApp.Client",
+        "projectPath": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Client\\BlazorMovieApp.Client.csproj",
+        "packagesPath": "C:\\Users\\m.leroux\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\m.leroux\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Shared\\BlazorMovieApp.Shared.csproj": {
+                "projectPath": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Shared\\BlazorMovieApp.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[6.0.7, 6.0.7]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Server\\BlazorMovieApp.Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Server\\BlazorMovieApp.Server.csproj",
+        "projectName": "BlazorMovieApp.Server",
+        "projectPath": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Server\\BlazorMovieApp.Server.csproj",
+        "packagesPath": "C:\\Users\\m.leroux\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Server\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\m.leroux\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Client\\BlazorMovieApp.Client.csproj": {
+                "projectPath": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Client\\BlazorMovieApp.Client.csproj"
+              },
+              "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Shared\\BlazorMovieApp.Shared.csproj": {
+                "projectPath": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Shared\\BlazorMovieApp.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly.Server": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Shared\\BlazorMovieApp.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Shared\\BlazorMovieApp.Shared.csproj",
+        "projectName": "BlazorMovieApp.Shared",
+        "projectPath": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Shared\\BlazorMovieApp.Shared.csproj",
+        "packagesPath": "C:\\Users\\m.leroux\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\m.leroux\\Desktop\\BlazorApp\\BlazorMovieApp\\BlazorMovieApp\\Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\m.leroux\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

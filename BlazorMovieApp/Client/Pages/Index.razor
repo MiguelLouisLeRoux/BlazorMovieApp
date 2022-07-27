@@ -1,0 +1,233 @@
+﻿@page "/"
+@using BlazorMovieApp.Shared
+@using System.Text.Json.Serialization
+@using Microsoft.AspNetCore
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Text.Json
+@inject HttpClient Http
+
+<PageTitle>Index</PageTitle>
+<div class="top-row px-4 float-end">
+    <button class="btn btn-success" @onclick="OpenAddModal">Add Movie</button>
+</div>
+<div class="container p-5" style="background-color:#100829">
+    <div class="row">
+        <div class="modal @AddmodalClass" tabindex="-1" role="dialog" style="display:@AddmodalDisplay;height:40rem;">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add a Movie</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="CloseAddModal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body d-flex">
+                        <div class="mx-auto">
+                            <div class="card text-center bg-dark m-4 p-0" style="width: 25rem; height: 15rem">
+                              <div class="card-body text-light">
+                                <label for="edittitle"><h8 class="card-title">Title:</h8></label>
+                                <input type="text" id="edittitle" class="form-control" @bind="newMovieTitle"  placeholder="E.g Intersteller" />
+                                <label for="editgenre"><h8 class="card-subtitle">Genre:</h8></label>
+                                <input type="text" id="editgenre" class="form-control" @bind="newMovieGenre"  placeholder="E.g Sci-fi" />
+                                <br>
+                                <label for="editimage">Movie Image:</label>
+                                <input type="text" id="editimage" class="form-control" @bind="newMovieImage" placeholder="Enter movie image url" />
+                              </div>
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="CloseAddModal">Close</button>
+                        <button type="button" class="btn btn-primary" @onclick=@(()=>@AddMovie(newMovieTitle, newMovieGenre, newMovieImage))>Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal @modalClass" tabindex="-1" role="dialog" style="display:@modalDisplay;height:40rem;">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">@selectedMovieTitle</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body d-flex">
+                        <div class="mx-auto">
+                            <div class="card text-center bg-dark m-4 p-0" style="width: 25rem; height: 35rem">
+                              <img class="card-img-top" style="height:20rem" src="@selctedMovieImage" alt="Card image cap">
+                              <div class="card-body text-light">
+                                <label for="edittitle"><h8 class="card-title">Title:</h8></label>
+                                <input type="text" id="edittitle" class="form-control" @bind="updateMovieTitle"  placeholder="@selectedMovieTitle" />
+                                <label for="editgenre"><h8 class="card-subtitle">Genre:</h8></label>
+                                <input type="text" id="editgenre" class="form-control" @bind="updateMovieGenre"  placeholder="@selectedMovieGenre" />
+                                <br>
+                                <label for="editimage">Movie Image Url:</label>
+                                <input type="text" id="editimage" class="form-control" value="@selctedMovieImage" />
+                              </div>
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="Close">Close</button>
+                        <button type="button" class="btn btn-primary" @onclick=@(()=>@UpdateMovie(updateMovieTitle, updateMovieGenre))>Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (showBackdrop)
+        {
+            <div class="modal-backdrop fade show"></div>
+        }
+
+
+        @if(movielist == null)
+        {
+            <p><em>Loadinge...</em></p>
+        }
+        else
+        {
+            @foreach(var movie in movielist)
+            {
+                <div class="card text-center bg-dark m-4 p-0" style="width: 20rem;">
+                  <img class="card-img-top" style="height:20rem" src="@movie.Image" alt="Card image cap">
+                  <div class="card-body text-light">
+                    <h5 class="card-title">@movie.Title</h5>
+                    <h8 class="card-subtitle">@movie.Genre</h8>
+                    <br>
+                    <br>
+                    <button class="btn-sm btn-info mx-1" name="@movie.Id" style="width:5rem" @onclick=@(()=>@AddLikedMovie(@movie.Id))>Like</button>
+                    <button class="btn-sm btn-secondary mx-1" style="width:5rem" @onclick=@(()=>@Open(@movie.Id,@movie.Title, @movie.Genre, @movie.Image))>Edit</button>
+                    <button class="btn-sm btn-danger mx-1" name="@movie.Id" style="width:5rem" @onclick=@(()=>@DeleteMovie(@movie.Id))>Remove</button>
+                  </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@code
+{
+    private string modalDisplay = "none;";
+    private string modalClass = "";
+    private bool showBackdrop = false;
+
+    private string AddmodalDisplay = "none;";
+    private string AddmodalClass = "";
+    private bool AddshowBackdrop = false;
+
+    private List<Movie>? movielist;
+    private Movie? movieObj;
+
+    private int selectedMovieId;
+    private string? selctedMovieImage;
+    private string? selectedMovieTitle;
+    private string? selectedMovieGenre;
+
+    private string? updateMovieTitle;
+    private string? updateMovieGenre;
+    private string? updateMovieImage;
+
+    private string? newMovieTitle;
+    private string? newMovieGenre;
+    private string? newMovieImage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        movielist = await Http.GetFromJsonAsync<List<Movie>>("api/Movies/Movies");
+
+    }
+
+    public void Open(int movieId, string movieTitle, string movieGenre, string movieImageUrl)
+    {
+        modalDisplay = "block;";
+        modalClass = "show";
+        showBackdrop = true;
+
+        selectedMovieId = movieId;
+        selctedMovieImage = movieImageUrl;
+        selectedMovieTitle = movieTitle;
+        selectedMovieGenre = movieGenre;
+
+    }
+
+    public void Close()
+    {
+        modalDisplay = "none";
+        modalClass = "";
+        showBackdrop = false;
+    }
+
+    public void OpenAddModal()
+    {
+        AddmodalDisplay = "block;";
+        AddmodalClass = "show";
+        AddshowBackdrop = true;
+    }
+
+    public void CloseAddModal()
+    {
+        AddmodalDisplay = "none";
+        AddmodalClass = "";
+        AddshowBackdrop = false;
+    }
+
+    private void SetValues(int id, string movieImage, string movieTitle, string movieGenre)
+    {
+        selectedMovieId = id;
+        selctedMovieImage = movieImage;
+        selectedMovieTitle = movieTitle;
+        selectedMovieGenre = movieGenre;
+    }
+
+    private async Task<List<Movie>> AddMovie(string movieTitle, string movieGenre, string movieImage)
+    {
+        Movie movieObj = new Movie() { Id=0 , Title = movieTitle, Genre = movieGenre, Image = movieImage };
+        //var str = JsonSerializer.Serialize<Movie>(movieObj);
+
+        //var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(movieObj));
+
+        var result = await Http.PostAsJsonAsync<Movie>($"api/Movies/AddMovie",movieObj);
+        var updatedresult = await result.Content.ReadFromJsonAsync<List<Movie>>();
+        movielist = updatedresult;
+        return updatedresult;
+    }
+
+    private async Task<List<Movie>> UpdateMovie(string movieTitle, string movieGenre)
+    {
+        Movie movieObj = new Movie() { Id = selectedMovieId, Title = movieTitle, Genre = movieGenre, Image = selctedMovieImage };
+        var str = new StringContent(movieObj.ToString());
+        var id = selectedMovieId;
+        var movieImage = selctedMovieImage;
+
+        var result = await Http.PutAsync($"api/Movies/UpdateMovie/{id}/{movieTitle}/{movieGenre}",str);
+        var updatedresult = await result.Content.ReadFromJsonAsync<List<Movie>>();
+        movielist = updatedresult;
+        return updatedresult;
+    }
+
+    private async Task<List<Movie>> AddLikedMovie(int id)
+    {
+        IdClass idObj = new IdClass() { id = id };
+        var str = new StringContent(idObj.ToString());
+        var movieImage = selctedMovieImage;
+
+        var result = await Http.PutAsync($"api/Movies/AddLikedMovie/{id}",str);
+        var updatedresult = await result.Content.ReadFromJsonAsync<List<Movie>>();
+        movielist = updatedresult;
+        return updatedresult;
+    }
+
+    private async Task<List<Movie>> DeleteMovie(int id)
+    {
+        var result = await Http.DeleteAsync($"api/Movies/DeleteMovie/{id}");
+        var deleteresult = await result.Content.ReadFromJsonAsync<List<Movie>>();
+        movielist = deleteresult;
+        return deleteresult;
+    }
+}

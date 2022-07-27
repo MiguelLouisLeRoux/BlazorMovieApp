@@ -1,0 +1,40 @@
+﻿@page "/DeletedMovies"
+@using BlazorMovieApp.Shared
+@inject HttpClient Http
+
+<PageTitle>DeletedMovies</PageTitle>
+
+<div class="container p-5" style="background-color:#100829">
+    <div class="row">
+        @if(deletedmovielist == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            foreach(var movie in deletedmovielist)
+            {
+                <div class="card text-center bg-dark m-4 p-0" style="width: 19rem;">
+                    <img class="card-img-top" style="height:20rem" src="@movie.Image" alt="Card image cap">
+                    <div class="card-body text-light">
+                    <h5 class="card-title">@movie.Title</h5>
+                    <h8 class="card-subtitle">@movie.Genre</h8>
+                    <p>Image source:</p>
+                    <br>
+                    <p>@movie.Image</p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+@code {
+    private List<Movie>? deletedmovielist;
+
+    protected override async Task OnInitializedAsync()
+    {
+        deletedmovielist = await Http.GetFromJsonAsync<List<Movie>>("api/Movies/GetDeletedMovies");
+    }
+}

@@ -1,0 +1,12 @@
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\bin\Debug\net6.0\BlazorMovieApp.Shared.deps.json
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\bin\Debug\net6.0\BlazorMovieApp.Shared.dll
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\bin\Debug\net6.0\BlazorMovieApp.Shared.pdb
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\obj\Debug\net6.0\BlazorMovieApp.Shared.csproj.AssemblyReference.cache
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\obj\Debug\net6.0\BlazorMovieApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\obj\Debug\net6.0\BlazorMovieApp.Shared.AssemblyInfoInputs.cache
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\obj\Debug\net6.0\BlazorMovieApp.Shared.AssemblyInfo.cs
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\obj\Debug\net6.0\BlazorMovieApp.Shared.csproj.CoreCompileInputs.cache
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\obj\Debug\net6.0\BlazorMovieApp.Shared.dll
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\obj\Debug\net6.0\refint\BlazorMovieApp.Shared.dll
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\obj\Debug\net6.0\BlazorMovieApp.Shared.pdb
+C:\Users\m.leroux\Desktop\BlazorApp\BlazorMovieApp\BlazorMovieApp\Shared\obj\Debug\net6.0\ref\BlazorMovieApp.Shared.dll

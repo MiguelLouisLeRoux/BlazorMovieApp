@@ -1,0 +1,50 @@
+﻿@page "/LikedMovies"
+@using BlazorMovieApp.Shared
+@inject HttpClient Http
+
+<PageTitle>LikedMovies</PageTitle>
+
+<div class="container p-5" style="background-color:#100829">
+    <div class="row">
+        @if(Likedmovielist == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            foreach(var movie in Likedmovielist)
+            {
+                <div class="card text-center bg-dark m-4 p-0" style="width: 19rem;">
+                    <img class="card-img-top" style="height:20rem" src="@movie.Image" alt="Card image cap">
+                    <div class="card-body text-light">
+                    <h5 class="card-title">@movie.Title</h5>
+                    <h8 class="card-subtitle">@movie.Genre</h8>
+                    <br>
+                    <br>
+                    <button class="btn btn-danger" @onclick=@(()=>@DeleteLikedMovie(@movie.Id))>Remove</button>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+@code {
+    private List<Movie>? Likedmovielist;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Likedmovielist = await Http.GetFromJsonAsync<List<Movie>>("api/Movies/GetLikedMovies");
+    }
+
+    private async Task<List<Movie>> DeleteLikedMovie(int id)
+    {
+        var result = await Http.DeleteAsync($"api/Movies/DeleteLikedMovie/{id}");
+        var deleteresult = await result.Content.ReadFromJsonAsync<List<Movie>>();
+        Likedmovielist = deleteresult;
+        return deleteresult;
+    }
+}
+
+
